@@ -1,97 +1,23 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
-  </div>
+ <div class="box-wrapper">
+		  <img src="http://www.freefoodphotos.com/imagelibrary/herbs/slides/chilis.jpg" alt="rhcp" />
+  		<div class="box-content">
+    			<a class="buy" href="javascript:void(0)"><span><i class="fa fa-cart-plus"></i></span></a>
+			    <div class="title">Chili Papers</div>
+			    <div class="desc">{{ msg }}</div>
+			    <span class="price">5.67$</span>
+		    	<div class="footer">
+        <ul>
+          <li class="fa fa-star"></li>
+          <li class="fa fa-star"></li>
+          <li class="fa fa-star"></li>
+          <li class="fa fa-star"></li>
+          <li class="fa fa-star-o"></li>
+        </ul>
+    </div>
+		  </div>
+		  <div class="success"></div>
+	</div>
 </template>
 
 <script>
@@ -105,18 +31,173 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+@import url(https://fonts.googleapis.com/css?family=Satisfy);
+@import url(https://fonts.googleapis.com/css?family=Acme);
+
+body {
+  background: #faff81;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.box-wrapper {
+	background-color: #fff;
+	overflow: hidden;
+	max-width: 320px;
+	box-shadow: 0px 5px 43px rgba( 0, 0, 0, 0.48 );
+	padding: 0;
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+
+  img {
+		max-width: 100%;
+	}
+
+	.success {
+		position:absolute;
+		top:50%;
+		left:37%;
+		transform: translate(-50%,-50%);
+		opacity: 0;
+		z-index: 999;
+
+		.expanded & {
+			opacity:1;
+			transition: opacity 0.3s 0.6s;
+		}
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			background-color: #fff;
+		}
+
+		&:before {
+			width: 40px;
+			height: 20px;
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			width: 88px;
+			height: 20px;
+			transform: rotate(-45deg);
+			top: -16px;
+			left: 8px;
+		}
+	}
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.title {
+  font-size: 2em;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+  font-family: 'Acme', sans-serif;
 }
-a {
-  color: #42b983;
+
+.desc {
+  font-family: 'Satisfy', cursive;
+  font-size: 1.2em;
+}
+
+.box-content{
+  position: relative;
+  z-index: 1;
+  
+    &:before {
+    content: '';
+    width: 200%;
+    height: 100px;
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    transform: rotate(-8deg);
+    top: -50px;
+    left: -10%;
+    z-index: -1;
+  }
+  
+  .buy {
+    display: block;
+    top: -80px;
+    right: 30px;
+    z-index: 2;
+    width: 70px;
+	  height: 70px;
+	  position: absolute;
+    
+    span {
+		  width: 70px;
+      height: 70px;
+      background-color: #06D6A0;
+      display: block;
+      border-radius: 50%;
+      position: absolute;
+      font-size: 36px; 
+      color: #fff;
+      transition: all 0.3s ease;
+      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      
+      i {
+        padding: 15px;
+      }
+
+		  .expanded & {
+			  width: 750px;
+			  height: 750px;
+        
+        i {
+          display: none;
+        }
+		  }
+    }
+  }
+  
+  .price {
+    font-size: 2em;
+    font-weight: 900;
+    display: block;
+    width: 100px;
+    margin: 20px auto 0;
+    position: relative;
+    font-family: 'Satisfy', cursive;
+    
+    &:after,
+    &:before {
+      content: '';
+      height: 1px;
+      width: 50px;
+      display: block;
+      position: absolute;
+      background-color: #ddd;
+      top: 18px;
+    }
+    
+    &:before {
+      left: -50px;
+    }
+    
+    &:after {
+      right: -50px;
+    }
+  }
+  
+  .footer {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 1em 0;
+      
+      li {
+        color: #EFD829;
+      }
+    }
+  }
 }
 </style>
