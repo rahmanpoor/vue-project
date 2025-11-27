@@ -1,18 +1,19 @@
 <template>
   <div class="about">
-     <HelloWorld msg="UAE" />
+     <p>این صفحه در حال توسعه است</p>
+    <Text msg="این متن درون msg  هست" />
   </div>
 </template>
 
 
 <script>
+import Text from "../components/Text.vue";
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "AboutView",
   components: {
-    HelloWorld,
+    Text,
   },
 };
 </script>

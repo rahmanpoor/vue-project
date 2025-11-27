@@ -1,17 +1,47 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="IRAN" />
+  <div class="home-container">
+    <h1>محصولات</h1>
+    <div class="products-grid">
+      <Card
+        v-for="product in products"
+        :key="product.id"
+        :product="product"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Card from "@/components/Card.vue";
+import ProductService from "@/services/ProductService";
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    Card,
   },
+  data() {
+    return {
+      products: null,
+    };
+  },
+  created() {
+    ProductService.getProducts()
+      .then((response) => {
+        this.products = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 };
 </script>
+
+
+<style>
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+</style>
