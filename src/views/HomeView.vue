@@ -2,13 +2,13 @@
   <div class="home-container">
     <h1>محصولات</h1>
     <div class="products-grid">
-       <router-link to="/product/1">
+       
       <Card
         v-for="product in products"
         :key="product.id"
         :product="product"
       />
-      </router-link>
+
     </div>
   </div>
 </template>

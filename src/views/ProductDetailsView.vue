@@ -1,27 +1,28 @@
 <template lang="en">
     <div v-if="product">
-       <p>In Stock: {{ product.inStock }}</p>
-        <p>Category: {{ product.categoryId }}</p>
+        <h2>{{ product.name }}</h2>
+        <p>قیمت: {{ product.price }} تومان</p>
+        <p>موجودی: {{ product.inStock }}</p>
+        <p>َشماره دسته: {{ product.categoryId }}</p>
     </div>
 </template>
 <script>
- import ProductService from "@/services/ProductService";
+import ProductService from "@/services/ProductService";
 export default {
+  props: ["id"],
   name: "ProductDetailsView",
   data() {
     return {
       product: null,
-      id: 1,
     };
   },
-  created() {
-    ProductService.getProduct(this.id)
-      .then((response) => {
-        this.product = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  async created() {
+    try {
+      const { data } = await ProductService.getProduct(this.id);
+      this.product = data;
+    } catch (error) {
+      console.error("خطا در دریافت محصول:", error);
+    }
   },
 };
 </script>

@@ -7,19 +7,20 @@ import ProductDetailsView from '../views/ProductDetailsView.vue'
 const routes = [
   {
     path: "/",
-    name: "home",
+    name: "HomeView",
     component: HomeView,
     meta: { title: 'صفحه اصلی' }
   },
   {
     path: "/about",
-    name: "about",
+    name: "AboutView",
     component: AboutView,
     meta: { title: 'درباره' }
   },
   {
-    path: "/product/1",
+    path: "/product/:id",
     name: "ProductDetailsView",
+    props: true,
     component: ProductDetailsView,
     meta: { title: 'جزئیات محصول' }
   },
